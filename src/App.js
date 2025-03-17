@@ -9,7 +9,8 @@ const App = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [docId, setDocId] = useState("");
   const [content, setContent] = useState("");
-  const BACKEND_URL = "https://document-search-backend.onrender.com";
+  const BACKEND_URL = process.env.URL || "http://localhost:8080";
+
   // 🔹 API Call - Search
   const handleSearch = async () => {
     try {
