@@ -9,7 +9,6 @@ const App = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [docId, setDocId] = useState("");
   const [content, setContent] = useState("");
-  const API_BASE_URL = "";
   // 🔹 API Call - Search
   const handleSearch = async () => {
     try {
