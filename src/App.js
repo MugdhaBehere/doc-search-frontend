@@ -43,19 +43,20 @@ const App = () => {
     fetchSuggestions(query);
   }, [query]);
 
-  // 🔹 API Call - Index Document
   const indexDocument = async () => {
     try {
-      console.log("Indexing document:", docId, content);
-      await axios.post(`http://localhost:8080/search/index`, null, {
+      console.log("Sending request to backend...");
+      const response = await axios.post("http://localhost:8080/search/index", null, {
         params: { docId, content },
       });
+      console.log("Response:", response);
       alert("Document Indexed!");
     } catch (error) {
-      console.error("Error indexing document:", error);
+      console.error("Error indexing document:", error.message);
       alert("Failed to index document!");
     }
   };
+  
 
   return (
     <div className="container">
