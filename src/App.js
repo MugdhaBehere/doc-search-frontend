@@ -9,12 +9,12 @@ const App = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [docId, setDocId] = useState("");
   const [content, setContent] = useState("");
-
+  const API_BASE_URL = "https://document-search-backend.onrender.com";
   // 🔹 API Call - Search
   const handleSearch = async () => {
     try {
       console.log("Searching for:", query);
-      const response = await axios.get(`http://localhost:8080/search/query?query=${query}`);
+      const response = await axios.get(`${API_BASE_URL}/search/query?query=${query}`);
       console.log("Search API Response:", response.data);
       setResults([...new Set(response.data)]);
     } catch (error) {
@@ -31,7 +31,7 @@ const App = () => {
     }
     try {
       console.log("Fetching suggestions for:", prefix);
-      const response = await axios.get(`http://localhost:8080/search/suggestions?prefix=${prefix}`);
+      const response = await axios.get(`${API_BASE_URL}/search/suggestions?prefix=${prefix}`);
       setSuggestions(response.data);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
@@ -46,7 +46,7 @@ const App = () => {
   const indexDocument = async () => {
     try {
       console.log("Sending request to backend...");
-      const response = await axios.post("http://localhost:8080/search/index", null, {
+      const response = await axios.post(`${API_BASE_URL}/search/index`, null, {
         params: { docId, content },
       });
       console.log("Response:", response);
